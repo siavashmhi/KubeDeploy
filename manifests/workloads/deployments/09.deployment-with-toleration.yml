@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taint-and-toleration
+  annotations:
+    kubernetes.io/change-cause: ver1
+spec:
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: taint-and-toleration-deploy
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: taint-and-toleration-deploy
+        svc: example
+    spec:
+      containers:
+        - name: taint-and-toleration
+          image: ahmadrafiee/mecan-sample-app:ver1
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10Mi
+            limits:
+              memory: 20Mi
+              cpu: 20m
+      tolerations:
+        - key: "hala"
+          operator: "Equal"
+          value: "harchi"
+          effect: "NoSchedule"

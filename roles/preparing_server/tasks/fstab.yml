@@ -1,0 +1,24 @@
+---
+- name: remove /tmp from fstab
+  become: 'yes'
+  mount:
+    path: /tmp
+    state: absent
+  tags:
+    - fstab
+
+- name: remove floppy from fstab
+  become: 'yes'
+  ansible.builtin.lineinfile:
+    path: /etc/fstab
+    state: absent
+    regexp: '^(.*)floppy(.*)$'
+  tags:
+    - fstab
+
+- name: Remove swap entry from /etc/fstab
+  ansible.builtin.lineinfile:
+    path: /etc/fstab
+    state: absent
+    regexp: '^UUID=[a-f0-9-]+\s+none\s+swap\s+sw\s+0\s+0'
+...

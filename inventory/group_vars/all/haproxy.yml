@@ -1,0 +1,11 @@
+DOMAIN_ADDR: cloudflow.ir
+KUBE_DASHBOARD_SUB: kube
+HAPROXY_SUB_DOMAIN: haproxy
+TRAEFIK_SUB_DOMAIN: reverseproxy
+INGRESS_SUB: ingress
+
+#echo cluster-password | htpasswd -s -n -i siavash
+TRAEFIK_USER: siavash
+TRAEFIK_PASS: "{SHA}ncttLCO6hjcuicv+8gpRtDMcfoc="
+haproxy_user: siavash
+haproxy_pass: "{SHA}ncttLCO6hjcuicv+8gpRtDMcfoc="

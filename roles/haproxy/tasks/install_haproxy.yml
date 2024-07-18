@@ -1,0 +1,21 @@
+- name: Create directories 
+  file:
+    path: /opt/services/haproxy
+    state: directory
+    mode: '0755'
+
+- name: copy configuration files
+  template:
+    src: "{{ item }}"
+    dest: /opt/services/haproxy
+  loop: 
+    - ./templates/haproxy_configs/.env
+    - ./templates/haproxy_configs/docker-compose.yml
+    - ./templates/haproxy_configs/haproxy.cfg
+
+# - name: pull haproxy docker image
+#   shell: docker compose -f /opt/services/haproxy/docker-compose.yml pull
+
+# - name: create haproxy docker container 
+#   shell: docker compose -f /opt/services/haproxy/docker-compose.yml up -d
+
